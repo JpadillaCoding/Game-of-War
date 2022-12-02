@@ -1,9 +1,9 @@
 /* TODO
 *-Make values for each card 
 *-Make the game start at the load of the page
--distrubute at random 26 cards in array
-    -create randomizer
-    -assign to each player
+*-distrubute at random 26 cards in array
+    *-create randomizer
+    *-assign to each player
 -Create func to do a normal round
     -draw from top of stack(array)
     -if else comaprison for higher value 
@@ -21,8 +21,11 @@
 -- edge cases to include --
 -make sure all inputs are capital letters or force capitals
 -only 2-10nums accepted
+-Player can only go onto next round with blank and enter, make sure 
+    this is told 
 */
 function gow() {
+    //Showing the values of each possible card assigned
     const values = {
         2:2,
         3:3,
@@ -38,17 +41,21 @@ function gow() {
         'K':13,
         'A':14
     }
+    //A deck of cards 
     let deck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,
         7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'J','J','J','J',
         'Q','Q','Q','Q','K','K','K','K','A','A','A','A']
     console.log("Welcome to the game!");
     let player1 = []
     let computer = []
+    //gets a random card from the deck. reusable and changes to size of deck
     function randomCard() {
         return Math.floor(Math.random() * deck.length);
     }
+    //moves an element from deck into the chosen user (playe or computer) by calling func
     function assignCards(user) {
         for(let i = 0; i < 26; i++) {
+            //random card is called on variable for x2 uses. copies into users deck and deletes from original deck
             let randomNum = randomCard();
             user[i] = deck[randomNum];
             deck.splice(randomNum, 1)
