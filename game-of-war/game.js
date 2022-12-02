@@ -49,11 +49,15 @@ function gow() {
     }
     function assignCards(user) {
         for(let i = 0; i < 26; i++) {
-            user[i] = deck[randomCard()];
-            
+            let randomNum = randomCard();
+            user[i] = deck[randomNum];
+            deck.splice(randomNum, 1)
         }
     }
+    assignCards(player1);
+    assignCards(computer);
+    console.log("player 1: ", player1);
+    console.log("computer: " , computer);
+    console.log(deck);
 
-   console.log(player1)
-   console.log(deck)
-}
+};
