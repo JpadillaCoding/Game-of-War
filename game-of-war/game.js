@@ -42,12 +42,18 @@ function gow() {
         7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'J','J','J','J',
         'Q','Q','Q','Q','K','K','K','K','A','A','A','A']
     console.log("Welcome to the game!");
-    let player = []
+    let player1 = []
     let computer = []
-    function randomKey() {
-        const keys = Object.keys(values);
-
-        return keys[Math.floor(Math.random() * keys.length)];
+    function randomCard() {
+        return Math.floor(Math.random() * deck.length);
+    }
+    function assignCards(user) {
+        for(let i = 0; i < 26; i++) {
+            user[i] = deck[randomCard()];
+            
+        }
     }
 
+   console.log(player1)
+   console.log(deck)
 }
