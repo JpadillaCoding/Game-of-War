@@ -5,8 +5,8 @@
     *-create randomizer
     *-assign to each player
 -Create func to do a normal round
-    -draw from top of stack(array)
-    -if else comaprison for higher value 
+    *-draw from top of stack(array)
+    *-if else comaprison for higher value 
     -move card to player that won to back of stack
     -if card is the same value, go to WAR
 -create war round func
@@ -62,27 +62,35 @@ function gow() {
         }
     }
     function normalGame() {
+        //use the top of the deck and compare
         playerCard = player1[0];
         computerCard = computer[0];
 
         console.log("Player's card is: " + playerCard);
         console.log("computer's card is: " +computerCard);
-
+        //comparing the 2 and no war function yet
         if (values[playerCard] > values[computerCard]) {
             console.log("Player wins!");
+            player1.push(computer[0])
+            computer.splice(0,1)
         }
         else if (values[playerCard] < values[computerCard]) {
             console.log("computer wins!");
+            computer.push(player1[0])
+            player1.splice(0,1)
         }
         else {
             console.log("ayooo were going to war!")
         }
     }
+    //checking status of decks
     assignCards(player1);
     assignCards(computer);
     console.log("player 1: ", player1);
     console.log("computer: " , computer);
     console.log(deck);
     normalGame();
-
+    console.log("player 1: ", player1);
+    console.log("computer: " , computer);
+    console.log(deck);
 };
