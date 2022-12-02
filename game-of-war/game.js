@@ -7,7 +7,7 @@
 -Create func to do a normal round
     *-draw from top of stack(array)
     *-if else comaprison for higher value 
-    -move card to player that won to back of stack
+    *-move card to player that won to back of stack
     -if card is the same value, go to WAR
 -create war round func
     -create seperate array (move not just copy) for 3 cards
@@ -61,6 +61,9 @@ function gow() {
             deck.splice(randomNum, 1)
         }
     }
+    function war() {
+
+    }
     function normalGame() {
         //use the top of the deck and compare
         playerCard = player1[0];
@@ -80,7 +83,7 @@ function gow() {
             player1.splice(0,1)
         }
         else {
-            console.log("ayooo were going to war!")
+            war();
         }
     }
     //checking status of decks
