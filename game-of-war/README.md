@@ -14,7 +14,7 @@ Clone the code
 
     git clone <link>
     
-Open in your favorite Editor or open the .js file in browser!
+Open index.html on a browser!
 
 
 ## Built With
