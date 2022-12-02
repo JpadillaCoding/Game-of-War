@@ -61,10 +61,28 @@ function gow() {
             deck.splice(randomNum, 1)
         }
     }
+    function normalGame() {
+        playerCard = player1[0];
+        computerCard = computer[0];
+
+        console.log("Player's card is: " + playerCard);
+        console.log("computer's card is: " +computerCard);
+
+        if (values[playerCard] > values[computerCard]) {
+            console.log("Player wins!");
+        }
+        else if (values[playerCard] < values[computerCard]) {
+            console.log("computer wins!");
+        }
+        else {
+            console.log("ayooo were going to war!")
+        }
+    }
     assignCards(player1);
     assignCards(computer);
     console.log("player 1: ", player1);
     console.log("computer: " , computer);
     console.log(deck);
+    normalGame();
 
 };
