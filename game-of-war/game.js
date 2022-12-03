@@ -69,8 +69,9 @@ function gow() {
     }
     function war() {
         player1War = player1.splice(0,1)
-        computerWar = computer.slice(0,1)
-        player1War = player1War.concat(player1.slice(0,3))
+        computerWar = computer.splice(0,1)
+        player1War = player1.splice(0,3).concat(player1War)
+        computerWar = computer.splice(0,3).concat(computerWar)
         
         console.log("player1 war" , player1War)
         console.log("computer war: ", computerWar)
