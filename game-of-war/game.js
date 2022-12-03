@@ -67,6 +67,19 @@ function gow() {
             deck.splice(randomNum, 1)
         }
     }
+    function winnerCheck() {
+        if (player1.length == 0) {
+            console.log("computer won the game!")
+            return 0
+        }
+        else if (computer.length == 0) {
+            console.log("player won the game!")
+            return 0
+        }
+        else {
+            normalGame();
+        }
+    }
     function war() {
         player1War = player1.splice(0,1).concat(player1War)
         computerWar = computer.splice(0,1).concat(computerWar)
@@ -85,17 +98,14 @@ function gow() {
             player1 = player1.concat(player1War,computerWar)
             computerWar = []
             player1War = []
-
-            normalGame();
+            winnerCheck();
         }
         else if (values[playerCard] < values[computerCard]) {
             console.log("computer wins!");
             computer = computer.concat(computerWar, player1War)
             computerWar = []
             player1War = []
-
-            normalGame();
-
+            winnerCheck();
         }
         else {
             console.log("Going to war!")
@@ -108,20 +118,18 @@ function gow() {
     }
 
     function normalGame() {
-        
+
         let playerCard = player1[0];
         let computerCard = computer[0];
         
         console.log("Player's card is: " + playerCard);
         console.log("computer's card is: " +computerCard);
-        //comparing the 2 and no war function yet
         if (values[playerCard] > values[computerCard]) {
             console.log("Player wins!");
             player1.push(player1.shift([0]));
             player1.push(computer[0]);
             computer.splice(0,1);
-            
-            normalGame();
+            winnerCheck();
         }
         else if (values[playerCard] < values[computerCard]) {
             console.log("computer wins!");
@@ -129,8 +137,7 @@ function gow() {
             player1.push(player1.shift([0]));
             computer.push(player1[0])
             player1.splice(0,1)
-
-            normalGame();
+            winnerCheck();
         }
         else {
             console.log("Going to war!")
@@ -140,7 +147,5 @@ function gow() {
     //checking status of decks
     assignCards(player1);
     assignCards(computer);
-    console.log("player 1: ", player1);
-    console.log("computer: " , computer);
     normalGame();
 };
