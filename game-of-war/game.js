@@ -68,13 +68,14 @@ function gow() {
         }
     }
     function war() {
-        player1War = player1.splice(0,4)
-        computerWar= computer.splice(0,4)
-        /* let playerCard = player1[1];
+        player1War = player1.splice(0,1)
+        computerWar = computer.slice(0,1)
+        player1War = player1War.concat(player1.slice(0,3))
+        
+        console.log("player1 war" , player1War)
+        console.log("computer war: ", computerWar)
+        let playerCard = player1[1];
         let computerCard = computer[1];
-        */
-        let playerCard = 2;
-        let computerCard = 2;
 
         console.log("Player's card is: " + playerCard);
         console.log("computer's card is: " +computerCard);
@@ -96,26 +97,26 @@ function gow() {
 
     function normalGame() {
         //use the top of the deck and compare
+        /*
         let playerCard = player1[0];
         let computerCard = computer[0];
-        /*
+        */
         let playerCard = 2;
         let computerCard = 2;
-        */
+        
         console.log("Player's card is: " + playerCard);
         console.log("computer's card is: " +computerCard);
         //comparing the 2 and no war function yet
         if (values[playerCard] > values[computerCard]) {
             console.log("Player wins!");
-            player1.push(player1[0]);
-            player1.pop(player1[0]);
+            player1.push(player1.shift([0]));
             player1.push(computer[0]);
             computer.splice(0,1);
         }
         else if (values[playerCard] < values[computerCard]) {
             console.log("computer wins!");
             computer.push(computer[0]);
-            computer.pop(computer[0]);
+            player1.push(player1.shift([0]));
             computer.push(player1[0])
             player1.splice(0,1)
         }
@@ -129,13 +130,7 @@ function gow() {
     assignCards(computer);
     console.log("player 1: ", player1);
     console.log("computer: " , computer);
-    console.log(deck);
     normalGame();
-    console.log("player 1: ", player1);
-    console.log("computer: " , computer);
-    console.log(deck);
-    console.log("player1 war: ", player1War)
-    console.log("computer war: ", computerWar)
 };
 
 //figuring out why winners card isn't going to back of deck :/
