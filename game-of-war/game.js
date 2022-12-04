@@ -11,19 +11,14 @@
     *-if card is the same value, go to WAR
 -create war round func
     *-create seperate array (move not just copy) for 3 cards
-    -draw the top of the array
-    -compare, if a win then go back to normal rounds with winner having both sets
+    *-draw the top of the array
+    *-compare, if a win then go back to normal rounds with winner having both sets
     -else redo the war func, allowing to keep adding 3 cards to top of stack
-    -if normal round deck is empty, game is tied
+    *-if normal round deck is empty, game is tied
 
 -check if any of the decks are empty, if empty then opposite player won.
 
 -- edge cases to include --
--make sure all inputs are capital letters or force capitals
--only 2-10nums accepted
--Player can only go onto next round with blank and enter, make sure 
-    this is told 
--End of game prompt
 -what if war can't draw 3 cards????
 -- optimizations --
 make war and normal game one function. calling by paramater of (1) or (3)
@@ -50,9 +45,9 @@ function gow() {
         7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'J','J','J','J',
         'Q','Q','Q','Q','K','K','K','K','A','A','A','A']
     console.log("Welcome to the game!");
-    let player1 = []
+    let player1 = ['K', 'K', 5, 10, 10, 9, 2, 4, 'J', 10, 3, 5, 3, 4, 5, 'A', 7, 'Q', 'Q', 8, 'J', 3, 8, 8, 7, 9]
     let player1War = []
-    let computer = []
+    let computer = ['K', "k", 6, 5, 4, 4, 'A', 10, 8, 2, 6, 'A', 'Q', 7, 3, 'A', 9, 'J', 'J', 6, 7, 2, 6, 'Q', 9, 2]
     let computerWar = []
     //gets a random card from the deck. reusable and changes to size of deck
     function randomCard() {
@@ -170,11 +165,13 @@ function gow() {
         }
     }
     //checking status of decks
-    assignCards(player1);
-    assignCards(computer);
+    //assignCards(player1);
+    //assignCards(computer);
     normalGame();
     player1.sort();
     computer.sort();
     console.log('player 1:' , player1 , 'war: ', player1War)
     console.log('computer:' , computer , 'war: ', computerWar)
 };
+//Need to figure out double war. right now it takes a card of the deck on the second war when
+//it sholdn't. should just take 3 cards for a total of 7 by second war. might need to make a function.
