@@ -16,12 +16,11 @@
     -else redo the war func, allowing to keep adding 3 cards to top of stack
     *-if normal round deck is empty, game is tied
 
--check if any of the decks are empty, if empty then opposite player won.
+*-check if any of the decks are empty, if empty then opposite player won.
 
--- edge cases to include --
--what if war can't draw 3 cards????
 -- optimizations --
-make war and normal game one function. calling by paramater of (1) or (3)
+-make war and normal game one function. calling by paramater of (1) or (3)
+-make war one function 
 */
 function gow() {
     //Showing the values of each possible card assigned
@@ -45,9 +44,9 @@ function gow() {
         7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'J','J','J','J',
         'Q','Q','Q','Q','K','K','K','K','A','A','A','A']
     console.log("Welcome to the game!");
-    let player1 = ['K', 'K', 5, 10, 10, 9, 2, 4, 'J', 10, 3, 5, 3, 4, 5, 'A', 7, 'Q', 'Q', 8, 'J', 3, 8, 8, 7, 9]
+    let player1 = []
     let player1War = []
-    let computer = ['K', "k", 6, 5, 4, 4, 'A', 10, 8, 2, 6, 'A', 'Q', 7, 3, 'A', 9, 'J', 'J', 6, 7, 2, 6, 'Q', 9, 2]
+    let computer = []
     let computerWar = []
     //gets a random card from the deck. reusable and changes to size of deck
     function randomCard() {
@@ -75,22 +74,16 @@ function gow() {
             normalGame();
         }
     }
-    function war() {
+    function chainedWar() {
 
-        console.log('player 1:' , player1 , 'war: ', player1War)
-        console.log('computer:' , computer , 'war: ', computerWar)
-
-        player1War = player1.splice(0,1).concat(player1War)
-        computerWar = computer.splice(0,1).concat(computerWar)
         player1War = player1.splice(0,3).concat(player1War)
         computerWar = computer.splice(0,3).concat(computerWar)
-        
-        console.log('player 1:' , player1 , 'war: ', player1War)
-        console.log('computer:' , computer , 'war: ', computerWar)
 
         let playerCard = player1War[0];
         let computerCard = computerWar[0];
 
+        console.log("Player's card is: " + playerCard);
+        console.log("computer's card is: " + computerCard);
     
         if (values[playerCard] > values[computerCard]) {
             console.log("Player wins!");
@@ -98,9 +91,6 @@ function gow() {
             player1 = player1.concat(player1War,computerWar)
             computerWar = []
             player1War = []
-            
-            console.log('player 1:' , player1 , 'war: ', player1War)
-            console.log('computer:' , computer , 'war: ', computerWar)
 
             winnerCheck();
         }
@@ -112,23 +102,54 @@ function gow() {
             computerWar = []
             player1War = []
 
-            console.log('player 1:' , player1 , 'war: ', player1War)
-            console.log('computer:' , computer , 'war: ', computerWar)
+            winnerCheck();
+        }
+
+        else {
+            console.log("Going to war!")
+            chainedWar();
+        }
+    }
+    function war() {
+
+        player1War = player1.splice(0,1).concat(player1War)
+        computerWar = computer.splice(0,1).concat(computerWar)
+        player1War = player1.splice(0,3).concat(player1War)
+        computerWar = computer.splice(0,3).concat(computerWar)
+
+        let playerCard = player1War[0];
+        let computerCard = computerWar[0];
+        console.log("Player's card is: " + playerCard);
+        console.log("computer's card is: " +computerCard);
+    
+        if (values[playerCard] > values[computerCard]) {
+            console.log("Player wins!");
+
+            player1 = player1.concat(player1War,computerWar)
+            computerWar = []
+            player1War = []
+
+            winnerCheck();
+        }
+
+        else if (values[playerCard] < values[computerCard]) {
+            console.log("computer wins!");
+
+            computer = computer.concat(computerWar, player1War)
+            computerWar = []
+            player1War = []
 
             winnerCheck();
         }
 
         else {
             console.log("Going to war!")
-            war();
+            chainedWar();
         }
         
     }
 
     function normalGame() {
-
-        console.log('player 1:' , player1 , 'war: ', player1War)
-        console.log('computer:' , computer , 'war: ', computerWar)
 
         let playerCard = player1[0];
         let computerCard = computer[0];
@@ -142,9 +163,6 @@ function gow() {
             player1.push(computer[0]);
             computer.splice(0,1);
 
-            console.log('player 1:' , player1 , 'war: ', player1War)
-            console.log('computer:' , computer , 'war: ', computerWar)
-
             winnerCheck();
         }
         else if (values[playerCard] < values[computerCard]) {
@@ -153,9 +171,6 @@ function gow() {
             computer.push(computer.shift([0]));
             computer.push(player1[0]);
             player1.splice(0,1);
-            
-            console.log('player 1:' , player1 , 'war: ', player1War)
-            console.log('computer:' , computer , 'war: ', computerWar)
 
             winnerCheck();
         }
@@ -165,13 +180,11 @@ function gow() {
         }
     }
     //checking status of decks
-    //assignCards(player1);
-    //assignCards(computer);
+    assignCards(player1);
+    assignCards(computer);
     normalGame();
     player1.sort();
     computer.sort();
     console.log('player 1:' , player1 , 'war: ', player1War)
     console.log('computer:' , computer , 'war: ', computerWar)
 };
-//Need to figure out double war. right now it takes a card of the deck on the second war when
-//it sholdn't. should just take 3 cards for a total of 7 by second war. might need to make a function.
