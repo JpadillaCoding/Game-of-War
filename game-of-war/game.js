@@ -86,35 +86,35 @@ function gow() {
         player1War = player1.splice(0,3).concat(player1War)
         computerWar = computer.splice(0,3).concat(computerWar)
         
-        console.log("player1 war" , player1War)
-        console.log("computer war: ", computerWar)
         let playerCard = player1War[0];
         let computerCard = computerWar[0];
 
-        console.log("Player's card is: " + playerCard);
-        console.log("computer's card is: " +computerCard);
+    
         if (values[playerCard] > values[computerCard]) {
             console.log("Player wins!");
+
             player1 = player1.concat(player1War,computerWar)
             computerWar = []
             player1War = []
+ 
             winnerCheck();
         }
+
         else if (values[playerCard] < values[computerCard]) {
             console.log("computer wins!");
+
             computer = computer.concat(computerWar, player1War)
             computerWar = []
             player1War = []
+
             winnerCheck();
         }
+
         else {
             console.log("Going to war!")
             war();
         }
-        console.log('player1 war:', player1War)
-        console.log('computer war: ',computerWar)
-        console.log("player 1: ", player1);
-        console.log("computer: " , computer);
+        
     }
 
     function normalGame() {
@@ -126,17 +126,21 @@ function gow() {
         console.log("computer's card is: " +computerCard);
         if (values[playerCard] > values[computerCard]) {
             console.log("Player wins!");
+
             player1.push(player1.shift([0]));
             player1.push(computer[0]);
             computer.splice(0,1);
+
             winnerCheck();
         }
         else if (values[playerCard] < values[computerCard]) {
             console.log("computer wins!");
+  
             computer.push(computer[0]);
             player1.push(player1.shift([0]));
             computer.push(player1[0])
             player1.splice(0,1)
+ 
             winnerCheck();
         }
         else {
