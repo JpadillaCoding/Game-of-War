@@ -81,11 +81,18 @@ function gow() {
         }
     }
     function war() {
+
+        console.log('player 1:' , player1 , 'war: ', player1War)
+        console.log('computer:' , computer , 'war: ', computerWar)
+
         player1War = player1.splice(0,1).concat(player1War)
         computerWar = computer.splice(0,1).concat(computerWar)
         player1War = player1.splice(0,3).concat(player1War)
         computerWar = computer.splice(0,3).concat(computerWar)
         
+        console.log('player 1:' , player1 , 'war: ', player1War)
+        console.log('computer:' , computer , 'war: ', computerWar)
+
         let playerCard = player1War[0];
         let computerCard = computerWar[0];
 
@@ -96,7 +103,10 @@ function gow() {
             player1 = player1.concat(player1War,computerWar)
             computerWar = []
             player1War = []
- 
+            
+            console.log('player 1:' , player1 , 'war: ', player1War)
+            console.log('computer:' , computer , 'war: ', computerWar)
+
             winnerCheck();
         }
 
@@ -106,6 +116,9 @@ function gow() {
             computer = computer.concat(computerWar, player1War)
             computerWar = []
             player1War = []
+
+            console.log('player 1:' , player1 , 'war: ', player1War)
+            console.log('computer:' , computer , 'war: ', computerWar)
 
             winnerCheck();
         }
@@ -119,6 +132,9 @@ function gow() {
 
     function normalGame() {
 
+        console.log('player 1:' , player1 , 'war: ', player1War)
+        console.log('computer:' , computer , 'war: ', computerWar)
+
         let playerCard = player1[0];
         let computerCard = computer[0];
         
@@ -126,21 +142,26 @@ function gow() {
         console.log("computer's card is: " +computerCard);
         if (values[playerCard] > values[computerCard]) {
             console.log("Player wins!");
-
+            //move players card to back,take computers card, and delete compauters card
             player1.push(player1.shift([0]));
             player1.push(computer[0]);
             computer.splice(0,1);
+
+            console.log('player 1:' , player1 , 'war: ', player1War)
+            console.log('computer:' , computer , 'war: ', computerWar)
 
             winnerCheck();
         }
         else if (values[playerCard] < values[computerCard]) {
             console.log("computer wins!");
   
-            computer.push(computer[0]);
-            player1.push(player1.shift([0]));
-            computer.push(player1[0])
-            player1.splice(0,1)
- 
+            computer.push(computer.shift([0]));
+            computer.push(player1[0]);
+            player1.splice(0,1);
+            
+            console.log('player 1:' , player1 , 'war: ', player1War)
+            console.log('computer:' , computer , 'war: ', computerWar)
+
             winnerCheck();
         }
         else {
@@ -152,4 +173,8 @@ function gow() {
     assignCards(player1);
     assignCards(computer);
     normalGame();
+    player1.sort();
+    computer.sort();
+    console.log('player 1:' , player1 , 'war: ', player1War)
+    console.log('computer:' , computer , 'war: ', computerWar)
 };
