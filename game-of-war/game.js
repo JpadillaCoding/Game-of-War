@@ -62,6 +62,7 @@ function gow() {
         }
     }
     function winnerCheck() {
+        //Check for winner by checking empty decks. Done after every game/war
         if (player1.length == 0) {
             console.log("computer won the game!")
             return 0
@@ -75,7 +76,7 @@ function gow() {
         }
     }
     function chainedWar() {
-
+        //Needed a seperate func for multiple wars in a row, removed splice(0,1)
         player1War = player1.splice(0,3).concat(player1War)
         computerWar = computer.splice(0,3).concat(computerWar)
 
@@ -111,7 +112,7 @@ function gow() {
         }
     }
     function war() {
-
+        //war deck gets original comparison card +3. OG card moved to back of war Deck for new comparison.
         player1War = player1.splice(0,1).concat(player1War)
         computerWar = computer.splice(0,1).concat(computerWar)
         player1War = player1.splice(0,3).concat(player1War)
@@ -124,7 +125,7 @@ function gow() {
     
         if (values[playerCard] > values[computerCard]) {
             console.log("Player wins!");
-
+            //take all cards in war decks, then clear both war decks.
             player1 = player1.concat(player1War,computerWar)
             computerWar = []
             player1War = []
@@ -183,8 +184,10 @@ function gow() {
     assignCards(player1);
     assignCards(computer);
     normalGame();
+    /* checks all cards have 4 pairs and winner has all the cards. remove this comments to verify.
     player1.sort();
     computer.sort();
     console.log('player 1:' , player1 , 'war: ', player1War)
     console.log('computer:' , computer , 'war: ', computerWar)
+    */
 };
