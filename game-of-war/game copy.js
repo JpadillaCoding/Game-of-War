@@ -64,11 +64,11 @@ function gow() {
     function winnerCheck() {
         //Check for winner by checking empty decks. Done after every game/war
         if (player1.length == 0) {
-            console.log("Computer won the game!")
+            console.log("computer won the game!")
             return 0
         }
         else if (computer.length == 0) {
-            console.log("Player won the game!")
+            console.log("player won the game!")
             return 0
         }
         else {
@@ -83,26 +83,25 @@ function gow() {
         let playerCard = player1War[0];
         let computerCard = computerWar[0];
 
-        console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`);
+        console.log("Player's card is: " + playerCard);
+        console.log("computer's card is: " + computerCard);
     
         if (values[playerCard] > values[computerCard]) {
+            console.log("Player wins!");
 
             player1 = player1.concat(player1War,computerWar)
             computerWar = []
             player1War = []
 
-            console.log(`Player wins! \nPlayer card count: ${player1.length}\nComputer card count: ${computer.length}`);
-
             winnerCheck();
         }
 
-        else if (values[playerCard] < values[computerCard]) { 
+        else if (values[playerCard] < values[computerCard]) {
+            console.log("computer wins!");
 
             computer = computer.concat(computerWar, player1War)
             computerWar = []
             player1War = []
-
-            console.log(`Computer wins! \nPlayer card count: ${player1.length}\nComputer card count: ${computer.length}`);
 
             winnerCheck();
         }
@@ -121,26 +120,25 @@ function gow() {
 
         let playerCard = player1War[0];
         let computerCard = computerWar[0];
-        console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`);
+        console.log("Player's card is: " + playerCard);
+        console.log("computer's card is: " +computerCard);
     
         if (values[playerCard] > values[computerCard]) {
+            console.log("Player wins!");
             //take all cards in war decks, then clear both war decks.
             player1 = player1.concat(player1War,computerWar)
             computerWar = []
             player1War = []
 
-            console.log(`Player wins! \nPlayer card count: ${player1.length}\nComputer card count: ${computer.length}`);
-
             winnerCheck();
         }
 
         else if (values[playerCard] < values[computerCard]) {
+            console.log("computer wins!");
 
             computer = computer.concat(computerWar, player1War)
             computerWar = []
             player1War = []
-
-            console.log(`Computer wins! \nPlayer card count: ${player1.length}\nComputer card count: ${computer.length}`);
 
             winnerCheck();
         }
@@ -157,23 +155,23 @@ function gow() {
         let playerCard = player1[0];
         let computerCard = computer[0];
         
-        console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`)
+        console.log("Player's card is: " + playerCard);
+        console.log("computer's card is: " +computerCard);
         if (values[playerCard] > values[computerCard]) {
+            console.log("Player wins!");
             //move players card to back,take computers card, and delete compauters card
             player1.push(player1.shift([0]));
             player1.push(computer[0]);
             computer.splice(0,1);
-            console.log(`Player wins! \nPlayer card count: ${player1.length}\nComputer card count: ${computer.length}`);
 
             winnerCheck();
         }
         else if (values[playerCard] < values[computerCard]) {
+            console.log("computer wins!");
   
             computer.push(computer.shift([0]));
             computer.push(player1[0]);
             player1.splice(0,1);
-
-            console.log(`Computer wins! \nPlayer card count: ${player1.length}\nComputer card count: ${computer.length}`);
 
             winnerCheck();
         }
