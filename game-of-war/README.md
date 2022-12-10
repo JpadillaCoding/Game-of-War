@@ -14,12 +14,14 @@ Clone the code
 
     git clone <link>
     
-Open index.html on a browser!
+Open index.html on a browser
+
+Open in console
 
 
 ## Built With
 
-  - [Javascript] (https://www.javascript.com/)
+  - [Javascript](https://www.javascript.com/)
 
 ## Authors
 
