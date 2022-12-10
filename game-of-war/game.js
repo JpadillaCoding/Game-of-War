@@ -55,14 +55,14 @@ function gow() {
     //moves an element from deck into the chosen user (playe or computer) by calling func
     function assignCards(user) {
         for(let i = 0; i < 26; i++) {
-            //random card is called on variable for x2 uses. copies into users deck and deletes from original deck
+            //random card is picked from the deck. copies into users deck and deletes from original deck
             let randomNum = randomCard();
             user[i] = deck[randomNum];
             deck.splice(randomNum, 1)
         }
     }
     function winnerCheck() {
-        //Check for winner by checking empty decks. Done after every game/war
+        //Check for winner by checking empty decks. Done after every game/war/chainedwar
         if (player1.length == 0) {
             console.log("Computer won the game!")
             return 0
@@ -77,6 +77,7 @@ function gow() {
     }
     function chainedWar() {
         //Needed a seperate func for multiple wars in a row, removed splice(0,1)
+        //since chained wars only draw 3 more cards
         player1War = player1.splice(0,3).concat(player1War)
         computerWar = computer.splice(0,3).concat(computerWar)
 
@@ -116,6 +117,8 @@ function gow() {
         //war deck gets original comparison card +3. OG card moved to back of war Deck for new comparison.
         player1War = player1.splice(0,1).concat(player1War)
         computerWar = computer.splice(0,1).concat(computerWar)
+        //concating after the splice puts the original card in the back of the war deck
+        //war deck keeps stacking as long as wars keep going
         player1War = player1.splice(0,3).concat(player1War)
         computerWar = computer.splice(0,3).concat(computerWar)
 
@@ -124,7 +127,7 @@ function gow() {
         console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`);
     
         if (values[playerCard] > values[computerCard]) {
-            //take all cards in war decks, then clear both war decks.
+            //winner takes all cards in war decks, then clear both war decks.
             player1 = player1.concat(player1War,computerWar)
             computerWar = []
             player1War = []
@@ -159,7 +162,7 @@ function gow() {
         
         console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`)
         if (values[playerCard] > values[computerCard]) {
-            //move players card to back,take computers card, and delete compauters card
+            //move players card to back,take computers card, and delete taken cards from computer
             player1.push(player1.shift([0]));
             player1.push(computer[0]);
             computer.splice(0,1);
@@ -168,7 +171,7 @@ function gow() {
             winnerCheck();
         }
         else if (values[playerCard] < values[computerCard]) {
-  
+            //move computer card to back,take players card, and delete taken cards from player
             computer.push(computer.shift([0]));
             computer.push(player1[0]);
             player1.splice(0,1);
