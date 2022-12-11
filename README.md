@@ -11,6 +11,8 @@ Clone the code
 
     git clone <link>
     
+## Running the program
+    
 Open index.html on a browser
 
 Open in console
