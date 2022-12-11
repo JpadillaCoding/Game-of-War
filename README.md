@@ -5,9 +5,6 @@ This is a mock-up of the popular card game, Game of War. The game is easy to run
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development
-environment running
-
 Fork the repo
 
 Clone the code
