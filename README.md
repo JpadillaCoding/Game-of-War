@@ -3,7 +3,7 @@
 This is a mock-up of the popular card game, Game of War. The game is easy to run as only needing a console. 
 
 
-### Installing
+## Installing
 
 Fork the repo
 
