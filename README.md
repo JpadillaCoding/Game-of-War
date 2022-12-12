@@ -17,6 +17,10 @@ Open index.html on a browser
 
 Open in console
 
+### Or
+
+Visit my github [page](https://jpadillacoding.github.io/Game-of-War/)!
+
 
 ## Built With
 
