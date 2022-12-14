@@ -196,3 +196,54 @@ function gow() {
     console.log('computer:' , computer , 'war: ', computerWar)
     */
 };
+/* class Card {
+    constructor(suit, rank, score) {
+        
+        this.suit = suit,
+        this.rank = rank,
+        this.score = score 
+    }
+}
+class Deck {
+    constructor(){
+        this.length = 52
+        this.cards = []
+    }
+    draw() {
+        let randomCard = Math.floor(Math.random() * this.length)
+        
+        return randomCard
+    }
+    createDeck() {
+        const suits = ['hearts','spades','clubs','diamonds']
+        const ranks = [2,3,4,5,6,7,8,9,10,'Jack','Queen','King','Ace']
+        const value = [2,3,4,5,6,7,8,9,10,11,12,13,14] 
+        for(let i = 0; i < suits.length; i++) {
+            for(let j = 0; j < ranks.length; j++){
+                this.cards.push(new Card(suits[i],ranks[j],value[j]))
+            }
+        }
+    }
+    shuffle() {
+        for (let i = 0; i < 20; i++) {
+            this.cards = this.cards.sort((a, b) => 0.5 - Math.random());            
+        }
+
+    }
+    
+}
+class Player {
+    constructor() {
+        this.length = 26
+        this.playerDeck = []
+        this.playerDeck = masterDeck.cards.splice(0,26);
+    }
+} 
+
+const masterDeck = new Deck();
+masterDeck.createDeck();
+masterDeck.shuffle();
+console.log(masterDeck.cards);
+let player = new Player;
+let computer = new Player;
+console.log(masterDeck.cards, player.playerDeck, computer.playerDeck); */
