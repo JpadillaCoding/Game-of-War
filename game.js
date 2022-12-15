@@ -39,7 +39,7 @@ function gow() {
         'K':13,
         'A':14
     }
-    //A deck of cards 
+   /*  //A deck of cards 
     let deck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,
         7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'J','J','J','J',
         'Q','Q','Q','Q','K','K','K','K','A','A','A','A']
@@ -60,7 +60,56 @@ function gow() {
             user[i] = deck[randomNum];
             deck.splice(randomNum, 1)
         }
+    } */
+
+    class Card {
+        constructor(suit, rank, score) {
+            
+            this.suit = suit,
+            this.rank = rank,
+            this.score = score 
+        }
     }
+    class Deck {
+        constructor(){
+            this.length = 52
+            this.cards = []
+        }
+        draw() {
+            let randomCard = Math.floor(Math.random() * this.length)
+            
+            return randomCard
+        }
+        createDeck() {
+            const suits = ['hearts','spades','clubs','diamonds']
+            const ranks = [2,3,4,5,6,7,8,9,10,'Jack','Queen','King','Ace']
+            const value = [2,3,4,5,6,7,8,9,10,11,12,13,14] 
+            for(let i = 0; i < suits.length; i++) {
+                for(let j = 0; j < ranks.length; j++){
+                    this.cards.push(new Card(suits[i],ranks[j],value[j]))
+                }
+            }
+        }
+        shuffle() {
+            for (let i = 0; i < 20; i++) {
+                this.cards = this.cards.sort((a, b) => 0.5 - Math.random());            
+            }
+
+        }
+        
+    }
+    class Player {
+        constructor() {
+            this.length = 26
+            this.playerDeck = []
+            this.playerDeck = masterDeck.cards.splice(0,26);
+        }
+    }
+    const masterDeck = new Deck();
+    masterDeck.createDeck();
+    masterDeck.shuffle();
+    let player = new Player;
+    let computer = new Player;
     function winnerCheck() {
         //Check for winner by checking empty decks. Done after every game/war/chainedwar
         if (player1.length == 0) {
@@ -186,8 +235,8 @@ function gow() {
         }
     }
     //checking status of decks
-    assignCards(player1);
-    assignCards(computer);
+    console.log(masterDeck.cards);
+    console.log(masterDeck.cards, player.playerDeck, computer.playerDeck);
     normalGame();
     /* checks all cards have 4 pairs and winner has all the cards. remove this comments to verify.
     player1.sort();
@@ -196,54 +245,3 @@ function gow() {
     console.log('computer:' , computer , 'war: ', computerWar)
     */
 };
-/* class Card {
-    constructor(suit, rank, score) {
-        
-        this.suit = suit,
-        this.rank = rank,
-        this.score = score 
-    }
-}
-class Deck {
-    constructor(){
-        this.length = 52
-        this.cards = []
-    }
-    draw() {
-        let randomCard = Math.floor(Math.random() * this.length)
-        
-        return randomCard
-    }
-    createDeck() {
-        const suits = ['hearts','spades','clubs','diamonds']
-        const ranks = [2,3,4,5,6,7,8,9,10,'Jack','Queen','King','Ace']
-        const value = [2,3,4,5,6,7,8,9,10,11,12,13,14] 
-        for(let i = 0; i < suits.length; i++) {
-            for(let j = 0; j < ranks.length; j++){
-                this.cards.push(new Card(suits[i],ranks[j],value[j]))
-            }
-        }
-    }
-    shuffle() {
-        for (let i = 0; i < 20; i++) {
-            this.cards = this.cards.sort((a, b) => 0.5 - Math.random());            
-        }
-
-    }
-    
-}
-class Player {
-    constructor() {
-        this.length = 26
-        this.playerDeck = []
-        this.playerDeck = masterDeck.cards.splice(0,26);
-    }
-} 
-
-const masterDeck = new Deck();
-masterDeck.createDeck();
-masterDeck.shuffle();
-console.log(masterDeck.cards);
-let player = new Player;
-let computer = new Player;
-console.log(masterDeck.cards, player.playerDeck, computer.playerDeck); */
