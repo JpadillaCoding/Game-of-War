@@ -54,7 +54,7 @@ function gow() {
     }
     //moves an element from deck into the chosen user (playe or computer) by calling func
     function assignCards(user) {
-        for(let i = 0; i < 26; i++) {
+        for(let i = 0; i < 26; i+" of "+) {
             //random card is picked from the deck. copies into users deck and deletes from original deck
             let randomNum = randomCard();
             user[i] = deck[randomNum];
@@ -100,26 +100,33 @@ function gow() {
     }
     class Player {
         constructor() {
-            this.length = 26
             this.playerDeck = []
             this.playerDeck = masterDeck.cards.splice(0,26);
         }
     }
     const masterDeck = new Deck();
     masterDeck.createDeck();
+    console.log(masterDeck.cards);
     masterDeck.shuffle();
     let player = new Player;
     let computer = new Player;
+   /*  player.playerDeck[0].rank = 2
+    player.playerDeck[0].score = 2 */
+    console.log(masterDeck.cards);
+    console.log(masterDeck.cards, player.playerDeck, computer.playerDeck);
+
     let playerWar = [];
     let computerWar = [];
     function winnerCheck() {
         //Check for winner by checking empty decks. Done after every game/war/chainedwar
         if (player.playerDeck.length == 0) {
             console.log("Computer won the game!")
+            console.log(computer.playerDeck)
             return 0
         }
         else if (computer.playerDeck.length == 0) {
             console.log("Player won the game!")
+            console.log(player.playerDeck)
             return 0
         }
         else {
@@ -135,7 +142,7 @@ function gow() {
         let playerCard = playerWar[0];
         let computerCard = computerWar[0];
 
-        console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`);
+        console.log(`Player's card is: ${playerCard.rank +" of "+ playerCard.suit} \nComputer card is: ${computerCard.rank +" of "+ computerCard.suit}`);
     
         if (playerCard.score > computerCard.score) {
 
@@ -160,7 +167,7 @@ function gow() {
         }
 
         else {
-            console.log("Going to war!")
+            console.log("___________________ \n⚔️⚔️⚔️Going to war!⚔️⚔️⚔️ \n___________________")
             chainedWar();
         }
     }
@@ -175,7 +182,7 @@ function gow() {
 
         let playerCard = playerWar[0];
         let computerCard = computerWar[0];
-        console.log(`Player's card is: ${playerCard.rank + playerCard.suit} \nComputer card is: ${computerCard}`);
+        console.log(`Player's card is: ${playerCard.rank +" of "+ playerCard.suit} \nComputer card is: ${computerCard.rank +" of "+ computerCard.suit}`);
     
         if (playerCard.score > computerCard.score) {
             //winner takes all cards in war decks, then clear both war decks.
@@ -200,7 +207,7 @@ function gow() {
         }
 
         else {
-            console.log("Going to war!")
+            console.log("___________________ \n⚔️⚔️⚔️Going to war!⚔️⚔️⚔️ \n___________________")
             chainedWar();
         }
         
@@ -211,7 +218,7 @@ function gow() {
         let playerCard = player.playerDeck[0];
         let computerCard = computer.playerDeck[0];
         
-        console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`)
+        console.log(`Player's card is: ${playerCard.rank +" of "+ playerCard.suit} \nComputer card is: ${computerCard.rank +" of "+ computerCard.suit}`)
         if (playerCard.score > computerCard.score) {
             //move players card to back,take computers card, and delete taken cards from computer
             player.playerDeck.push(player.playerDeck.shift([0]));
@@ -232,13 +239,11 @@ function gow() {
             winnerCheck();
         }
         else {
-            console.log("Going to war!")
+            console.log("___________________ \n⚔️⚔️⚔️Going to war!⚔️⚔️⚔️ \n___________________")
             war();
         }
     }
     //checking status of decks
-    console.log(masterDeck.cards);
-    console.log(masterDeck.cards, player.playerDeck, computer.playerDeck);
     normalGame();
     /* checks all cards have 4 pairs and winner has all the cards. remove this comments to verify.
     player.sort();
