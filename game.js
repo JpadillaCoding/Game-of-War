@@ -39,7 +39,7 @@ function gow() {
             this.length = 52
             this.cards = []
         }
-        //loop itirates through the suits and sub loops through ranks to assign cards.
+        //loop itirates through the suits and sub loops through ranks to assign cards
         createDeck() {
             const suits = ['hearts','spades','clubs','diamonds']
             const ranks = [2,3,4,5,6,7,8,9,10,'Jack','Queen','King','Ace']
