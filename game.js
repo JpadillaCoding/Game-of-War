@@ -23,44 +23,6 @@
 -make war one function 
 */
 function gow() {
-    //Showing the values of each possible card assigned
-/*     const values = {
-        2:2,
-        3:3,
-        4:4,
-        5:5,
-        6:6,
-        7:7,
-        8:8,
-        9:9,
-        10:10,
-        'Jack':11,
-        'Queen':12,
-        'King':13,
-        'Ace':14
-    } */
-   /*  //A deck of cards 
-    let deck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,
-        7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'J','J','J','J',
-        'Q','Q','Q','Q','K','K','K','K','A','A','A','A']
-    console.log("Welcome to the game!");
-    let player = []
-    let playerWar = []
-    let computer = []
-    let computerWar = []
-    //gets a random card from the deck. reusable and changes to size of deck
-    function randomCard() {
-        return Math.floor(Math.random() * deck.length);
-    }
-    //moves an element from deck into the chosen user (playe or computer) by calling func
-    function assignCards(user) {
-        for(let i = 0; i < 26; i+" of "+) {
-            //random card is picked from the deck. copies into users deck and deletes from original deck
-            let randomNum = randomCard();
-            user[i] = deck[randomNum];
-            deck.splice(randomNum, 1)
-        }
-    } */
 
     class Card {
         constructor(suit, rank, score) {
@@ -71,15 +33,13 @@ function gow() {
         }
     }
     class Deck {
+        //created a length variable for easy reusability
+        //cards added into this.cards
         constructor(){
             this.length = 52
             this.cards = []
         }
-        draw() {
-            let randomCard = Math.floor(Math.random() * this.length)
-            
-            return randomCard
-        }
+        //loop itirates through the suits and sub loops through ranks to assign cards.
         createDeck() {
             const suits = ['hearts','spades','clubs','diamonds']
             const ranks = [2,3,4,5,6,7,8,9,10,'Jack','Queen','King','Ace']
@@ -90,6 +50,8 @@ function gow() {
                 }
             }
         }
+        //shuffle function. Each itiration a card can move up or down 1 spot. 
+        //looped 20 times for more randomness
         shuffle() {
             for (let i = 0; i < 20; i++) {
                 this.cards = this.cards.sort((a, b) => 0.5 - Math.random());            
@@ -98,6 +60,7 @@ function gow() {
         }
         
     }
+    //class for creating players, removes 26 cards from shuffled deck
     class Player {
         constructor() {
             this.playerDeck = []
@@ -106,15 +69,9 @@ function gow() {
     }
     const masterDeck = new Deck();
     masterDeck.createDeck();
-    console.log(masterDeck.cards);
     masterDeck.shuffle();
     let player = new Player;
     let computer = new Player;
-   /*  player.playerDeck[0].rank = 2
-    player.playerDeck[0].score = 2 */
-    console.log(masterDeck.cards);
-    console.log(masterDeck.cards, player.playerDeck, computer.playerDeck);
-
     let playerWar = [];
     let computerWar = [];
     function winnerCheck() {
@@ -243,12 +200,5 @@ function gow() {
             war();
         }
     }
-    //checking status of decks
     normalGame();
-    /* checks all cards have 4 pairs and winner has all the cards. remove this comments to verify.
-    player.sort();
-    computer.sort();
-    console.log('player 1:' , player , 'war: ', playerWar)
-    console.log('computer:' , computer , 'war: ', computerWar)
-    */
 };
