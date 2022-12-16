@@ -24,7 +24,7 @@
 */
 function gow() {
     //Showing the values of each possible card assigned
-    const values = {
+/*     const values = {
         2:2,
         3:3,
         4:4,
@@ -38,7 +38,7 @@ function gow() {
         'Queen':12,
         'King':13,
         'Ace':14
-    }
+    } */
    /*  //A deck of cards 
     let deck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,
         7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'J','J','J','J',
@@ -114,11 +114,11 @@ function gow() {
     let computerWar = [];
     function winnerCheck() {
         //Check for winner by checking empty decks. Done after every game/war/chainedwar
-        if (player.cards.length == 0) {
+        if (player.playerDeck.length == 0) {
             console.log("Computer won the game!")
             return 0
         }
-        else if (computer.cards.length == 0) {
+        else if (computer.playerDeck.length == 0) {
             console.log("Player won the game!")
             return 0
         }
@@ -129,32 +129,32 @@ function gow() {
     function chainedWar() {
         //Needed a seperate func for multiple wars in a row, removed splice(0,1)
         //since chained wars only draw 3 more cards
-        playerWar = player.cards.splice(0,3).concat(playerWar)
-        computerWar = computer.cards.splice(0,3).concat(computerWar)
+        playerWar = player.playerDeck.splice(0,3).concat(playerWar)
+        computerWar = computer.playerDeck.splice(0,3).concat(computerWar)
 
         let playerCard = playerWar[0];
         let computerCard = computerWar[0];
 
         console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`);
     
-        if (values[playerCard] > values[computerCard]) {
+        if (playerCard.score > computerCard.score) {
 
-            player = player.concat(playerWar,computerWar)
+            player.playerDeck = player.playerDeck.concat(playerWar,computerWar)
             computerWar = []
             playerWar = []
 
-            console.log(`Player wins! \nPlayer card count: ${player.length}\nComputer card count: ${computer.length}`);
+            console.log(`Player wins! \nPlayer card count: ${player.playerDeck.length}\nComputer card count: ${computer.playerDeck.length}`);
 
             winnerCheck();
         }
 
-        else if (values[playerCard] < values[computerCard]) { 
+        else if (playerCard.score < computerCard.score) { 
 
-            computer = computer.concat(computerWar, playerWar)
+            computer.playerDeck = computer.playerDeck.concat(computerWar, playerWar)
             computerWar = []
             playerWar = []
 
-            console.log(`Computer wins! \nPlayer card count: ${player.length}\nComputer card count: ${computer.length}`);
+            console.log(`Computer wins! \nPlayer card count: ${player.playerDeck.length}\nComputer card count: ${computer.playerDeck.length}`);
 
             winnerCheck();
         }
@@ -166,35 +166,35 @@ function gow() {
     }
     function war() {
         //war deck gets original comparison card +3. OG card moved to back of war Deck for new comparison.
-        playerWar = player.cards.splice(0,1).concat(playerWar)
-        computerWar = computer.cards.splice(0,1).concat(computerWar)
+        playerWar = player.playerDeck.splice(0,1).concat(playerWar)
+        computerWar = computer.playerDeck.splice(0,1).concat(computerWar)
         //concating after the splice puts the original card in the back of the war deck
         //war deck keeps stacking as long as wars keep going
-        playerWar = player.cards.splice(0,3).concat(playerWar)
-        computerWar = computer.cards.splice(0,3).concat(computerWar)
+        playerWar = player.playerDeck.splice(0,3).concat(playerWar)
+        computerWar = computer.playerDeck.splice(0,3).concat(computerWar)
 
         let playerCard = playerWar[0];
         let computerCard = computerWar[0];
-        console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`);
+        console.log(`Player's card is: ${playerCard.rank + playerCard.suit} \nComputer card is: ${computerCard}`);
     
-        if (values[playerCard] > values[computerCard]) {
+        if (playerCard.score > computerCard.score) {
             //winner takes all cards in war decks, then clear both war decks.
-            player = player.concat(playerWar,computerWar)
+            player.playerDeck = player.playerDeck.concat(playerWar,computerWar)
             computerWar = []
             playerWar = []
 
-            console.log(`Player wins! \nPlayer card count: ${player.length}\nComputer card count: ${computer.length}`);
+            console.log(`Player wins! \nPlayer card count: ${player.playerDeck.length}\nComputer card count: ${computer.playerDeck.length}`);
 
             winnerCheck();
         }
 
-        else if (values[playerCard] < values[computerCard]) {
+        else if (playerCard.score < computerCard.score) {
 
-            computer = computer.concat(computerWar, playerWar)
+            computer.playerDeck = computer.playerDeck.concat(computerWar, playerWar)
             computerWar = []
             playerWar = []
 
-            console.log(`Computer wins! \nPlayer card count: ${player.length}\nComputer card count: ${computer.length}`);
+            console.log(`Computer wins! \nPlayer card count: ${player.playerDeck.length}\nComputer card count: ${computer.playerDeck.length}`);
 
             winnerCheck();
         }
@@ -208,26 +208,26 @@ function gow() {
 
     function normalGame() {
 
-        let playerCard = player.cards[0];
-        let computerCard = computer.cards[0];
+        let playerCard = player.playerDeck[0];
+        let computerCard = computer.playerDeck[0];
         
         console.log(`Player's card is: ${playerCard} \nComputer card is: ${computerCard}`)
-        if (values[playerCard] > values[computerCard]) {
+        if (playerCard.score > computerCard.score) {
             //move players card to back,take computers card, and delete taken cards from computer
-            player.push(player.shift([0]));
-            player.push(computer[0]);
-            computer.splice(0,1);
-            console.log(`Player wins! \nPlayer card count: ${player.length}\nComputer card count: ${computer.length}`);
+            player.playerDeck.push(player.playerDeck.shift([0]));
+            player.playerDeck.push(computer.playerDeck[0]);
+            computer.playerDeck.splice(0,1);
+            console.log(`Player wins! \nPlayer card count: ${player.playerDeck.length}\nComputer card count: ${computer.playerDeck.length}`);
 
             winnerCheck();
         }
-        else if (values[playerCard] < values[computerCard]) {
+        else if (playerCard.score < computerCard.score) {
             //move computer card to back,take players card, and delete taken cards from player
-            computer.push(computer.shift([0]));
-            computer.push(player[0]);
-            player.splice(0,1);
+            computer.playerDeck.push(computer.playerDeck.shift([0]));
+            computer.playerDeck.push(player.playerDeck[0]);
+            player.playerDeck.splice(0,1);
 
-            console.log(`Computer wins! \nPlayer card count: ${player.length}\nComputer card count: ${computer.length}`);
+            console.log(`Computer wins! \nPlayer card count: ${player.playerDeck.length}\nComputer card count: ${computer.playerDeck.length}`);
 
             winnerCheck();
         }
